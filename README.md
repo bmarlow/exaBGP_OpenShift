@@ -14,6 +14,9 @@ As most organizations that require any kind of data center scale have routers ou
 
 ![alt text](https://github.com/buddinski/exaBGP_OpenShift/tree/master/images/scaling_with_adc.png "Scaling with a load-balancer/ADC")
 
+![alt text][logo]
+
+[logo]: https://github.com/buddinski/exaBGP_OpenShift/tree/master/images/scaling_with_adc.png "Scaling with a load-balancer/ADC"
 
 
 ### How to build from docker file

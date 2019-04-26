@@ -12,7 +12,7 @@ We can achieve this by running exaBGP in containers pinned to router nodes annou
 As most organizations that require any kind of data center scale have routers our layer 3 switches running in their enviornment already, this prevents the need for procuring additional hardware to scale the OpenShift environment.
 
 
-![alt text](https://github.com/buddinski/exaBGP_OpenShift/images/scaling_with_adc.png "Scaling with a load-balancer/ADC")
+![alt text](https://github.com/buddinski/exaBGP_OpenShift/tree/master/images/scaling_with_adc.png "Scaling with a load-balancer/ADC")
 
 
 

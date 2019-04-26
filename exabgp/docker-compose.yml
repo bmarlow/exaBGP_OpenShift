@@ -1,0 +1,11 @@
+version: '3'
+services:
+    exabgp:
+        container_name: exabgp
+        privileged: true
+        ports:
+            - '1179:179'
+        volumes:
+            - '/home/brandon/Dropbox/container/exabgp:/config/exabgp'
+            - '/home/brandon/Dropbox/container/exabgp/run:/run'
+        image: 'exabgp'

@@ -1,1 +1,1 @@
-# BiRD_OpenShift
+# exaBGP_OpenShift

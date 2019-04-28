@@ -11,9 +11,13 @@ We can achieve this by running exaBGP in containers pinned to router nodes annou
 
 As most organizations that require any kind of data center scale have routers our layer 3 switches running in their enviornment already, this prevents the need for procuring additional hardware to scale the OpenShift environment.
 
+## The Legacy Topology
 
 ![](images/scaling_with_adc.png)
 
+## The New Topology
+
+![](images/scaling_with_bgp.png)
 
 ### How to build from docker file
 Navigate to the Docker file dir and execute:

@@ -19,7 +19,7 @@ The legacy topology is scaled by using an enterprise grade load-balancer/ADC for
 
 ## The New Topology
 
-![](images/scaling_with_exa.png)![](images/scaling_with_exa.png)
+![](images/scaling_with_exa.png)
 
 The new topology is scaled by running exaBGP containers on each of the ingress points (Infrastructure/Admin/API nodes) and pinning it to that node.  The exaBGP containers peer with the upstream router(s) and all announce an anycast address.  Almost every enterprise with a significant infrastructure has some sort of router or layer-3 switch, so additional cost for equipement outside of the OpenShift envioronment is eliminated.  Also, because we are scaling via BGP each exaBGP container can peer to multiple routers, giving full mesh and increasing scaling and redundancy.
 

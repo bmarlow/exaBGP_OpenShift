@@ -17,7 +17,7 @@ As most organizations that require any kind of data center scale have routers ou
 
 ## The New Topology
 
-![](images/scaling_with_bgp.png)
+![](images/scaling_with_exa.png)
 
 ### How to build from docker file
 Navigate to the Docker file dir and execute:

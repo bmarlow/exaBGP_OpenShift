@@ -1,5 +1,5 @@
 FROM fedora:29
-#EXPOSE 179
+EXPOSE 179
 RUN dnf -y install python-pip
 RUN pip install exabgp
 #RUN mkfifo /run/exabgp.{in,out}

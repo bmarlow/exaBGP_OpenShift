@@ -24,7 +24,7 @@ The legacy topology is scaled by using an enterprise grade load-balancer/ADC for
 The new topology is scaled by running exaBGP containers on each of the ingress points (Infrastructure/Admin/API nodes) and pinning it to that node.  The exaBGP containers peer with the upstream router(s) and all announce an anycast address.  Almost every enterprise with a significant infrastructure has some sort of router or layer-3 switch, so additional cost for equipement outside of the OpenShift envioronment is eliminated.  Also, because we are scaling via BGP each exaBGP container can peer to multiple routers, giving full mesh and increasing scaling and redundancy.
 
 ## Setup overview
-1.  Create templated exaBGP config file with appropriate settings:
+1.  Create templated exaBGP config file with appropriate settings (note, if you desire pods to be running or peering with different AS's that will necessitate one config-map for each local-remote AS pair<sup>1</sup>):
     * Neighor address for the upstream router
     * Remote AS
     * Local AS
@@ -59,3 +59,5 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
 
 ### Profit!
 Go grab a beer, you earned it.
+
+<sup>1</sup> Ideally we would handle this by using node labels and passing those through to the pod, however the metadata.labels function doesn't currently support this.  There are some hacky workarounds that you can use involving an initcontainer, kubeconfig, and the oc command-line, but they are pretty gross.

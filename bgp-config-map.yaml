@@ -1,0 +1,84 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: exabgp-config-map
+  namespace: default
+  selfLink: /api/v1/namespaces/default/configmaps/exabgp-config-map
+  uid: 7d2a843c-79c2-11e9-83bf-025da56a1f26
+  resourceVersion: '264295'
+  creationTimestamp: '2019-05-18T23:13:04Z'
+data:
+  api-add-remove.run: "#!/usr/bin/env python\n\nimport sys\nimport time\n\nmessages = [\n'announce route 1.1.0.0/24 next-hop 101.1.101.1',\n'announce route 1.1.0.0/25 next-hop 101.1.101.1',\n'withdraw route 1.1.0.0/24 next-hop 101.1.101.1',\n]\n\ntime.sleep(2)\n\nwhile messages:\n\tmessage = messages.pop(0)\n\tsys.stdout.write( message + '\\n')\n\tsys.stdout.flush()\n\ttime.sleep(1)\n\nwhile True:\n\ttime.sleep(1)\n"
+  docker-compose.yml: |
+    version: '3'
+    services:
+        exabgp:
+            container_name: exabgp
+            privileged: true
+            ports:
+                - '1179:179'
+            volumes:
+                - '/home/brandon/Dropbox/container/exabgp:/config/exabgp'
+                - '/home/brandon/Dropbox/container/exabgp/run:/run'
+            image: 'exabgp'
+  exabgp.conf: "neighbor 10.0.5.201 {\n\tinherit a-few-routes;\n\trouter-id _NODE_IP_;\n\tlocal-address _POD_IP_;\n\tlocal-as 65001;\n\tpeer-as 65000;\n\thold-time 180;\n\n\tfamily {\n\t\tipv4 unicast;\n\t}\n\n\tannounce {\n\t\tipv4 {\n\t\t\tunicast 2.2.2.2/32 next-hop self;\n\t\t}\n\t}\n}\n"
+  exabgp.env: |
+
+    [exabgp.api]
+    ack = true
+    chunk = 1
+    cli = true
+    compact = false
+    encoder = json
+    pipename = 'exabgp'
+    respawn = true
+    terminate = false
+
+    [exabgp.bgp]
+    openwait = 60
+
+    [exabgp.cache]
+    attributes = true
+    nexthops = true
+
+    [exabgp.daemon]
+    daemonize = false
+    drop = true
+    pid = ''
+    umask = '0137'
+    user = 'nobody'
+
+    [exabgp.log]
+    all = false
+    configuration = true
+    daemon = true
+    destination = 'stdout'
+    enable = true
+    level = INFO
+    message = false
+    network = true
+    packets = false
+    parser = false
+    processes = true
+    reactor = true
+    rib = false
+    routes = false
+    short = false
+    timers = false
+
+    [exabgp.pdb]
+    enable = false
+
+    [exabgp.profile]
+    enable = false
+    file = ''
+
+    [exabgp.reactor]
+    speed = 1.0
+
+    [exabgp.tcp]
+    acl = false
+    bind = ''
+    delay = 0
+    once = false
+    port = 1179

@@ -27,3 +27,9 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
 Navigate to the Docker file dir and execute:
 
 `docker build -t exabgp .`
+
+### How to create config-map from files (the easy way)
+`oc create configmap exabgp-config-map --from-file=[your_dir_with_files]`
+
+### OR (the Brad way)
+'oc create -f [name_of_config-map_yaml_file]`

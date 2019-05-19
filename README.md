@@ -25,11 +25,11 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
 
 ## Setup overview
 1.  Create templated exaBGP config file with appropriate settings:
-  * Neighor address for the upstream router
-  * Remote AS
-  * Local AS
-  * Address to be advertised into BGP
-  * Appropriate timers (if non-standard values are needed to match upstream router)
+    * Neighor address for the upstream router
+    * Remote AS
+    * Local AS
+    * Address to be advertised into BGP
+    * Appropriate timers (if non-standard values are needed to match upstream router)
 2.  Create a config-map - this will be used to populate much of the config above to the pod
 3.  Create a daemonset - used for automating deployment of pods
   1. Specify a node selector (so that our BGP containers only run where we want them)

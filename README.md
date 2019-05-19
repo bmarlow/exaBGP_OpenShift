@@ -36,7 +36,9 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
     2. Configure the initContainer
         * This takes the templated file above, replaces the appropriate values and stores it for the final container
     3. Launch the final container
-4. Apply node labels that match the node selector for deployment 
+4. Apply node labels that match the node selector for deployment
+5. ????
+6. Profit!
 
 
 ### How to build from docker file

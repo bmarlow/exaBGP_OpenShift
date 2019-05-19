@@ -23,6 +23,22 @@ The legacy topology is scaled by using an enterprise grade load-balancer/ADC for
 
 The new topology is scaled by running exaBGP containers on each of the ingress points (Infrastructure/Admin/API nodes) and pinning it to that node.  The exaBGP containers peer with the upstream router(s) and all announce an anycast address.  Almost every enterprise with a significant infrastructure has some sort of router or layer-3 switch, so additional cost for equipement outside of the OpenShift envioronment is eliminated.  Also, because we are scaling via BGP each exaBGP container can peer to multiple routers, giving full mesh and increasing scaling and redundancy.
 
+## Setup overview
+1.  Create templated exaBGP config file with appropriate settings:
+  * Neighor address for the upstream router
+  * Remote AS
+  * Local AS
+  * Address to be advertised into BGP
+  * Appropriate timers (if non-standard values are needed to match upstream router)
+2.  Create a config-map - this will be used to populate much of the config above to the pod
+3.  Create a daemonset - used for automating deployment of pods
+  1. Specify a node selector (so that our BGP containers only run where we want them)
+  2. Configure the initContainer
+    * This takes the templated file above, replaces the appropriate values and stores it for the final container
+  3. Launch the final container
+4. Apply node labels that match the node selector for deployment 
+
+
 ### How to build from docker file
 Navigate to the Docker file dir and execute:
 

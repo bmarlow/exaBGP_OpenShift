@@ -32,4 +32,4 @@ Navigate to the Docker file dir and execute:
 `oc create configmap exabgp-config-map --from-file=[your_dir_with_files]`
 
 ### OR (the Brad way)
-'oc create -f [name_of_config-map_yaml_file]`
+`oc create -f [name_of_config-map_yaml_file]`

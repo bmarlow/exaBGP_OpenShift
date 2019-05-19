@@ -32,10 +32,10 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
     * Appropriate timers (if non-standard values are needed to match upstream router)
 2.  Create a config-map - this will be used to populate much of the config above to the pod
 3.  Create a daemonset - used for automating deployment of pods
-  1. Specify a node selector (so that our BGP containers only run where we want them)
-  2. Configure the initContainer
-    * This takes the templated file above, replaces the appropriate values and stores it for the final container
-  3. Launch the final container
+    1. Specify a node selector (so that our BGP containers only run where we want them)
+    2. Configure the initContainer
+        * This takes the templated file above, replaces the appropriate values and stores it for the final container
+    3. Launch the final container
 4. Apply node labels that match the node selector for deployment 
 
 

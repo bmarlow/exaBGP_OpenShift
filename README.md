@@ -60,4 +60,9 @@ The new topology is scaled by running exaBGP containers on each of the ingress p
 ### Profit!
 Go grab a beer, you earned it.
 
+
+
+
+
+
 <sup>1.  Ideally we would handle this by using node labels and passing those through to the pod, however the metadata.labels function doesn't currently support this.  There are some hacky workarounds that you can use involving an initcontainer, kubeconfig, and the oc command-line, but they are pretty gross.</sup>
